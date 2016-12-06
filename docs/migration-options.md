@@ -119,3 +119,21 @@ if ($this->schema->hasColumn('users', 'email')) {
 ```
 
 #### Connection & Storage Engine
+
+If you want to perform a schema operation on a database connection that is not your default connection,
+use the `connection` method:
+
+```php
+$this->schema->connection('foo')->create('users', function ($table) {
+    $table->increments('id');
+});
+```
+
+You may use the `engine` property on the schema builder to define the table's storage engine:
+
+```php
+$this->schema->create('users', function ($table) {
+    $table->engine = 'InnoDB';
+    $table->increments('id');
+});
+```
