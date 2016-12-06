@@ -1,6 +1,6 @@
 # Database: Migrations
 
-**NOTE:** This document is based off the laravel document. Much credits to this maintainers.
+**NOTE:** This document is based off the laravel documentation. Much credits to this maintainers.
 
 ## Introduction.
 
@@ -11,4 +11,16 @@ to manually add a column to their local database schema, you've faced the proble
 solve.
 
 The `Blueprint` class provides database agnostic support for creating and manipulation
-tables accross all of the applications. And Supported database systems. 
+tables accross all of the applications. And Supported database systems.
+
+# Generating Migrations
+
+To create a migration; use the following command:
+
+```bash
+php vendor/bin/phinx create MyFirstMigration -c config-phinx.php
+```
+
+The new migration file will be placed in your `src/migrations` directory.
+
+The `-c` option may used to point out your configuration file.
