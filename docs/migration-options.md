@@ -179,47 +179,47 @@ Of course, the schema builder contains a variety of column types that you may sp
 
 Command                                     | Description
 ------------------------------------------- | --------------------------------------------------------------------------------------
-`$table->bigIncrements('id');`              |  Incrementing ID (primary key) using a "UNSIGNED BIG INTEGER" equivalent.
-`$table->bigInteger('votes');`              |  BIGINT equivalent for the database.
-`$table->binary('data');`                   |  BLOB equivalent for the database.
-`$table->boolean('confirmed');`             |  BOOLEAN equivalent for the database.
-`$table->char('name', 4);`                  |  CHAR equivalent with a length.
-`$table->date('created_at');`               |  DATE equivalent for the database.
-`$table->dateTime('created_at');`           |  DATETIME equivalent for the database.
-`$table->dateTimeTz('created_at');`         |  DATETIME (with timezone) equivalent for the database.
-`$table->decimal('amount', 5, 2);`          |  DECIMAL equivalent with a precision and scale.
-`$table->double('column', 15, 8);`          |  DOUBLE equivalent with precision, 15 digits in total and 8 after the decimal point.
-`$table->enum('choices', ['foo', 'bar']);`  | ENUM equivalent for the database.
-`$table->float('amount', 8, 2);`            |  FLOAT equivalent for the database, 8 digits in total and 2 after the decimal point.
-`$table->increments('id');`                 |  Incrementing ID (primary key) using a "UNSIGNED INTEGER" equivalent.
-`$table->integer('votes');`                 |  INTEGER equivalent for the database.
-`$table->ipAddress('visitor');`             |  IP address equivalent for the database.
-`$table->json('options');`                  |  JSON equivalent for the database.
-`$table->jsonb('options');`                 |  JSONB equivalent for the database.
-`$table->longText('description');`          |  LONGTEXT equivalent for the database.
-`$table->macAddress('device');`             |  MAC address equivalent for the database.
-`$table->mediumIncrements('id');`           |  Incrementing ID (primary key) using a "UNSIGNED MEDIUM INTEGER" equivalent.
-`$table->mediumInteger('numbers');`         |  MEDIUMINT equivalent for the database.
-`$table->mediumText('description');`        |  MEDIUMTEXT equivalent for the database.
-`$table->morphs('taggable');`               |  Adds unsigned INTEGER `taggable_id` and STRING `taggable_type`.
-`$table->nullableTimestamps();`             |  Same as `timestamps()`.
-`$table->rememberToken();`                  |  Adds `remember_token` as VARCHAR(100) NULL.
-`$table->smallIncrements('id');`            |  Incrementing ID (primary key) using a "UNSIGNED SMALL INTEGER" equivalent.
-`$table->smallInteger('votes');`            |  SMALLINT equivalent for the database.
-`$table->softDeletes();`                    |  Adds nullable `deleted_at` column for soft deletes.
-`$table->string('email');`                  |  VARCHAR equivalent column.
-`$table->string('name', 100);`              |  VARCHAR equivalent with a length.
-`$table->text('description');`              |  TEXT equivalent for the database.
-`$table->time('sunrise');`                  |  TIME equivalent for the database.
-`$table->timeTz('sunrise');`                |  TIME (with timezone) equivalent for the database.
-`$table->tinyInteger('numbers');`           |  TINYINT equivalent for the database.
-`$table->timestamp('added_on');`            |  TIMESTAMP equivalent for the database.
-`$table->timestampTz('added_on');`          |  TIMESTAMP (with timezone) equivalent for the database.
-`$table->timestamps();`                     |  Adds nullable `created_at` and `updated_at` columns.
-`$table->timestampsTz();`                   |  Adds nullable `created_at` and `updated_at` (with timezone) columns.
-`$table->unsignedBigInteger('votes');`      |  Unsigned BIGINT equivalent for the database.
-`$table->unsignedInteger('votes');`         |  Unsigned INT equivalent for the database.
-`$table->unsignedMediumInteger('votes');`   |  Unsigned MEDIUMINT equivalent for the database.
-`$table->unsignedSmallInteger('votes');`    |  Unsigned SMALLINT equivalent for the database.
-`$table->unsignedTinyInteger('votes');`     |  Unsigned TINYINT equivalent for the database.
-`$table->uuid('id');`                       |  UUID equivalent for the database.
+`->bigIncrements('id');`              |  Incrementing ID (primary key) using a "UNSIGNED BIG INTEGER" equivalent.
+`->bigInteger('votes');`              |  BIGINT equivalent for the database.
+`->binary('data');`                   |  BLOB equivalent for the database.
+`->boolean('confirmed');`             |  BOOLEAN equivalent for the database.
+`->char('name', 4);`                  |  CHAR equivalent with a length.
+`->date('created_at');`               |  DATE equivalent for the database.
+`->dateTime('created_at');`           |  DATETIME equivalent for the database.
+`->dateTimeTz('created_at');`         |  DATETIME (with timezone) equivalent for the database.
+`->decimal('amount', 5, 2);`          |  DECIMAL equivalent with a precision and scale.
+`->double('column', 15, 8);`          |  DOUBLE equivalent with precision, 15 digits in total and 8 after the decimal point.
+`->enum('choices', ['foo', 'bar']);`  | ENUM equivalent for the database.
+`->float('amount', 8, 2);`            |  FLOAT equivalent for the database, 8 digits in total and 2 after the decimal point.
+`->increments('id');`                 |  Incrementing ID (primary key) using a "UNSIGNED INTEGER" equivalent.
+`->integer('votes');`                 |  INTEGER equivalent for the database.
+`->ipAddress('visitor');`             |  IP address equivalent for the database.
+`->json('options');`                  |  JSON equivalent for the database.
+`->jsonb('options');`                 |  JSONB equivalent for the database.
+`->longText('description');`          |  LONGTEXT equivalent for the database.
+`->macAddress('device');`             |  MAC address equivalent for the database.
+`->mediumIncrements('id');`           |  Incrementing ID (primary key) using a "UNSIGNED MEDIUM INTEGER" equivalent.
+`->mediumInteger('numbers');`         |  MEDIUMINT equivalent for the database.
+`->mediumText('description');`        |  MEDIUMTEXT equivalent for the database.
+`->morphs('taggable');`               |  Adds unsigned INTEGER `taggable_id` and STRING `taggable_type`.
+`->nullableTimestamps();`             |  Same as `timestamps()`.
+`->rememberToken();`                  |  Adds `remember_token` as VARCHAR(100) NULL.
+`->smallIncrements('id');`            |  Incrementing ID (primary key) using a "UNSIGNED SMALL INTEGER" equivalent.
+`->smallInteger('votes');`            |  SMALLINT equivalent for the database.
+`->softDeletes();`                    |  Adds nullable `deleted_at` column for soft deletes.
+`->string('email');`                  |  VARCHAR equivalent column.
+`->string('name', 100);`              |  VARCHAR equivalent with a length.
+`->text('description');`              |  TEXT equivalent for the database.
+`->time('sunrise');`                  |  TIME equivalent for the database.
+`->timeTz('sunrise');`                |  TIME (with timezone) equivalent for the database.
+`->tinyInteger('numbers');`           |  TINYINT equivalent for the database.
+`->timestamp('added_on');`            |  TIMESTAMP equivalent for the database.
+`->timestampTz('added_on');`          |  TIMESTAMP (with timezone) equivalent for the database.
+`->timestamps();`                     |  Adds nullable `created_at` and `updated_at` columns.
+`->timestampsTz();`                   |  Adds nullable `created_at` and `updated_at` (with timezone) columns.
+`->unsignedBigInteger('votes');`      |  Unsigned BIGINT equivalent for the database.
+`->unsignedInteger('votes');`         |  Unsigned INT equivalent for the database.
+`->unsignedMediumInteger('votes');`   |  Unsigned MEDIUMINT equivalent for the database.
+`->unsignedSmallInteger('votes');`    |  Unsigned SMALLINT equivalent for the database.
+`->unsignedTinyInteger('votes');`     |  Unsigned TINYINT equivalent for the database.
+`->uuid('id');`                       |  UUID equivalent for the database.
