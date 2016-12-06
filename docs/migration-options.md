@@ -22,5 +22,49 @@ php vendor/bin/phinx create MyFirstMigration -c config-phinx.php
 ```
 
 The new migration file will be placed in your `src/migrations` directory.
+The `-c` flag option may used to point out your configuration file.
 
-The `-c` option may used to point out your configuration file.
+# Migration structure
+
+A migration class contains two methods: `up` and `down`. The `up` method is used to add new tables, columns,
+or indexes to your database, while the `down` method should simply reverse the operations performed by
+the `up` method.
+
+Within both of these methods you may use the schema builder to expressively create and modify tables.
+For example, this migration examples a `users` table:
+
+````php
+<?php
+
+use Activism\Be\Eloquent\Connect;
+use Illuminate\Database\Schema\Blueprint;
+
+class UsersMigration extends Connect
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        $this->schema->create('widgets', function(Blueprint $table){  
+            $table->increments('id');
+            $table->string('username');
+            $table->string('email');
+            $table->string('password');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        $this->schema->drop('users');
+    }
+}
+```
