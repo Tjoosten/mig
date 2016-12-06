@@ -90,3 +90,16 @@ php vendor\bin\phinx rollback -c config-phinx.php
 ## Tables
 
 ### Creating tables
+
+To create a new database file, use the `create` method on the `schema` binding. The `create` method
+accepts two arguments. The first is the name of the table, while the second is a `Closure` which
+receives a `Blueprint` object that may be used to define the new table:
+
+```php
+$this->schema->create('users', function (Blueprint $table) {
+    $table->increments('id');
+});
+```
+
+of course, when creating the table, you may use any of the schema builder's column methods to
+define the table's columns.
