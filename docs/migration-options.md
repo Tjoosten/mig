@@ -248,3 +248,38 @@ Modifier                    | Description
 `->storedAs($expression)`   |  Create a stored generated column (MySQL Only)
 `->unsigned()`              |  Set `integer` columns to `UNSIGNED`
 `->virtualAs($expression)`  |  Create a virtual generated column (MySQL Only)
+
+## Modifying columns
+
+### Prerequisites
+
+Before modifying a column, be sure to add the `doctrine/dbal` dependency to your `composer.json` file.
+The Doctrine DBAL library is used to determine the current state of the column and create the
+SQL queries needed to make the specified adjustments to the column:
+
+```bash
+composer require doctrine/dbal
+```
+
+### Updating Column Attribute
+
+The `change` method allows you to modify some existing column types to a new type or modify the column's attributes.
+For example, you may wish to increase the size of a string column. To see the  `change` method in action,
+let's increase the size of the `name` column from 25 to 50:
+
+```php
+$this->schema->table('users', function ($table) {
+    $table->string('name', 50)->change();
+});
+```
+
+We could also modify a column to be nullable:
+
+```php
+$this->schema->table('users', function ($table) {
+    $table->string('name', 50)->nullable()->change();
+});
+```
+
+> **NOTE:** The following column types can not be "changed": char, double, enum, mediumInteger, timestamp, tinyInteger, ipAddress, json, jsonb, 
+macAddress, mediumIncrements, morphs, nullableTimestamps, softDeletes, timeTz, timestampTz, timestamps, timestampsTz, unsignedMediumInteger, unsignedTinyInteger, uuid.
