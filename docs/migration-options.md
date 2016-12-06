@@ -1,6 +1,6 @@
 # Database: Migrations
 
-**NOTE:** This document is based off the laravel documentation. Much credits to this maintainers.
+> **NOTE:** This document is based off the laravel documentation. Much credits to this maintainers.
 
 ## Introduction.
 
@@ -77,7 +77,7 @@ To run all of your outstanding migrations, execute the migration command:
 php vendor/bin/phinx migrate -c config-phinx.php
 ```
 
-**NOTE:** If you are using some vagrant instances, you should run this command form within your virtual machine.
+> **NOTE:** If you are using some vagrant instances, you should run this command form within your virtual machine.
 
 ### Rolling back migrations
 
@@ -281,5 +281,5 @@ $this->schema->table('users', function ($table) {
 });
 ```
 
-> **NOTE:** The following column types can not be "changed": char, double, enum, mediumInteger, timestamp, tinyInteger, ipAddress, json, jsonb, 
+> **NOTE:** The following column types can not be "changed": char, double, enum, mediumInteger, timestamp, tinyInteger, ipAddress, json, jsonb,
 macAddress, mediumIncrements, morphs, nullableTimestamps, softDeletes, timeTz, timestampTz, timestamps, timestampsTz, unsignedMediumInteger, unsignedTinyInteger, uuid.
