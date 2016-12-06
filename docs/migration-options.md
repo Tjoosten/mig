@@ -101,5 +101,21 @@ $this->schema->create('users', function (Blueprint $table) {
 });
 ```
 
-of course, when creating the table, you may use any of the schema builder's column methods to
+Of course, when creating the table, you may use any of the schema builder's column methods to
 define the table's columns.
+
+#### Checking For Table / Column Existence
+
+You may easily check for the existence of table or column using the `hasTable` and `hasColumn` methods:
+
+```php
+if ($this->schema->hasTable('users')) {
+    //
+}
+
+if ($this->schema->hasColumn('users', 'email')) {
+    //
+}
+```
+
+#### Connection & Storage Engine
