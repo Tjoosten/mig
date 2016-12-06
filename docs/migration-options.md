@@ -13,7 +13,7 @@ solve.
 The `Blueprint` class provides database agnostic support for creating and manipulation
 tables accross all of the applications. And Supported database systems.
 
-# Generating Migrations
+## Generating Migrations
 
 To create a migration; use the following command:
 
@@ -24,7 +24,7 @@ php vendor/bin/phinx create MyFirstMigration -c config-phinx.php
 The new migration file will be placed in your `src/migrations` directory.
 The `-c` flag option may used to point out your configuration file.
 
-# Migration structure
+## Migration structure
 
 A migration class contains two methods: `up` and `down`. The `up` method is used to add new tables, columns,
 or indexes to your database, while the `down` method should simply reverse the operations performed by
@@ -68,3 +68,25 @@ class UsersMigration extends Connect
     }
 }
 ```
+
+## Running migrations
+
+To run all of your outstanding migrations, execute the migration command:
+
+```bash
+php vendor/bin/phinx migrate -c config-phinx.php
+```
+
+**NOTE:** If you are using some vagrant instances, you should run this command form within your virtual machine.
+
+### Rolling back migrations
+
+To rollback the migrations, you may use the folliwng command:
+
+```bash
+php vendor\bin\phinx rollback -c config-phinx.php
+```
+
+## Tables
+
+### Creating tables
