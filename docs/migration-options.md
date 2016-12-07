@@ -283,3 +283,16 @@ $this->schema->table('users', function ($table) {
 
 > **NOTE:** The following column types can not be "changed": char, double, enum, mediumInteger, timestamp, tinyInteger, ipAddress, json, jsonb,
 macAddress, mediumIncrements, morphs, nullableTimestamps, softDeletes, timeTz, timestampTz, timestamps, timestampsTz, unsignedMediumInteger, unsignedTinyInteger, uuid.
+
+#### Renaming columns 
+
+To rename a column, you may use the `renameColumn` method on the Schema object. Before renaming a column, be sure
+to add the `doctrine/dbal` dependency to your `composer.json` file: 
+
+```php
+$this->schema->table('users', function ($table) {
+    $table->renameColumn($from, $to);
+});
+```
+
+> **NOTE:** Renaming any column in a table that also has a column of type enum is not currently supported.
