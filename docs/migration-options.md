@@ -284,10 +284,10 @@ $this->schema->table('users', function ($table) {
 > **NOTE:** The following column types can not be "changed": char, double, enum, mediumInteger, timestamp, tinyInteger, ipAddress, json, jsonb,
 macAddress, mediumIncrements, morphs, nullableTimestamps, softDeletes, timeTz, timestampTz, timestamps, timestampsTz, unsignedMediumInteger, unsignedTinyInteger, uuid.
 
-#### Renaming columns 
+#### Renaming columns
 
 To rename a column, you may use the `renameColumn` method on the Schema object. Before renaming a column, be sure
-to add the `doctrine/dbal` dependency to your `composer.json` file: 
+to add the `doctrine/dbal` dependency to your `composer.json` file:
 
 ```php
 $this->schema->table('users', function ($table) {
@@ -296,3 +296,128 @@ $this->schema->table('users', function ($table) {
 ```
 
 > **NOTE:** Renaming any column in a table that also has a column of type enum is not currently supported.
+
+## Dropping columns
+
+To drop a column, use the `dropColumn` method on the schema object. Before dropping columns from a SQLite database,
+you will need to add the `doctrine/dbal` dependency to your `composer.json` file and run the `composer update` command in your terminal to install the library:
+
+```php
+$this->schema->table('users', function ($table) {
+    $table->dropColumn('votes');
+});
+```
+
+You may drop multiple columns from a table by passing an array of column names to the `dropColumn` method:
+
+```php
+$this->schema->table('users', function ($table) {
+    $table->dropColumn(['votes', 'avatar', 'location']);
+});
+```
+
+> **NOTE:** Dropping or modifying columns within a single migration while using a SQLite database is not supported.
+
+## Indexes
+
+### Creating indexes
+
+The schema object supports several types of indexs. First, let's look at an example that specifies a column's values should be unique.
+To create the index, we can simply chain the `unique` method onto the column definition:
+
+```php
+$table->string('email')->unique();
+```
+
+Alternatively, you may create the index after defining the column. For example:
+
+```php
+$table->unique('email');
+```
+
+You may even pass an array of columns to an index method to create a compound index:
+
+```php
+$table->index(['account_id', 'created_at']);
+```
+
+The application will automatically generate a reasonable index name, but you may pass a second argument
+to the method to specify the name yourself:
+
+```php
+$table->index('email', 'my_index_name');
+```
+
+#### Avaiable Index Types
+
+Command                                      | Description
+-------------------------------------------- | ----------------------------------------
+`$table->primary('id');`                     | Add a primary key.
+`$table->primary(['first', 'last']);`        | Add composite keys.
+`$table->unique('email')`                    | Add a unique index.
+`$table->unique(['state', 'my_index_name'])` | Add a custom index name.
+`$table->unique(['first', 'last']);`         | Add a composite unique index.
+`$table->index('state')`                     | Add a basic index.
+
+## Dropping indexes
+
+To drop an index, you must specify the index's name. By default,
+The application automatically assigns a reasonable name to the indexes.
+Simply concatenate the table name, the name of the indexed column, and the index type. Here are some examples:
+
+Command                                      | Description
+-------------------------------------------- | ----------------------------------------
+`$table->dropPrimary('users_id_primary');`   | Drop a primary key from the "users" table.
+`$table->dropUnique('users_email_unique');`  | Drop a unique index from the "users" table.
+`$table->dropIndex('geo_state_index');`      | Drop a basic index from the "geo" table.
+
+If you pass an array of columns into a method that drops indexes,
+the conventional index name will be generated based on the table name, columns and key type:
+
+```php
+$this->schema->dropIndex('geo', function ($table) {
+    $table->dropIndex(['state']);
+});
+```
+
+# Foreign Key constraints
+
+The application also provides support for creating foreign key constraints, which are used to force referential
+integrity at the database level. For example, let's define a `user_id` column on the `posts` table that references the `id`
+column on a `users` table:
+
+```php
+$this->table->table('posts', function ($table) {
+    $table->integer('user_id')->unsigned();
+    $table->foreign('user_id')->references('id')->on('users');
+});
+```
+
+You may also specify the desired action for the "on delete" and "on update" properties of the constraint:
+
+```php
+$table->foreign('user_id')
+    ->references('id')->on('users')
+    ->onDelete('cascade');
+```
+
+To drop a foreign key, you may use the `dropForeign` method. Foreign key constraints use the same naming
+convention as indexes. So, we will concatenate the table name and the columns in the constraint then suffix
+the name with "_foreign.php":
+
+```php
+$table->dropForeign('post_user_id_foreign');
+```
+
+Or, you may pass an array value which will automatically use the conventional constraint name when dropping:
+
+```php
+$table->dropForeign(['user_id']);
+```
+
+You may enable of disable foreign key constraint within your migrations by using the following methods:
+
+```php
+$this->schema->enableForeignKeyConstraints();
+$this->schema->disableForeignKeyConstraints();
+```
